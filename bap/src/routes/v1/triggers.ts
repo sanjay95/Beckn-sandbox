@@ -9,9 +9,10 @@ router.post("/search", async (req: Request, res: Response) => {
         return res.status(400).send({ error });
     }
     const transaction_id = await initiateSearch(req);
+    console.log('transaction_id : ' + transaction_id);
     await wait(parseInt(req.body.ttl || 0));
     const result = getResultsFromApp(req, transaction_id);
-    res.status(200).send(result);
+    res.status(200).send(transaction_id);
 });
 
 router.post("/:api", async (req: Request, res: Response) => {

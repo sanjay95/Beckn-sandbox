@@ -106,7 +106,7 @@ export const initiateSearch = async (req: Request) => {
         const bpp_uri = req.body.bpp_uri;
         const bg_uri = config.get('bg_uri');
         const end_point = bpp_uri ? combineURLs(bpp_uri,'/search') : combineURLs(bg_uri,'/search');
-        console.log(bpp_uri, end_point);
+        console.log(bpp_uri?bpp_uri:'BG /search', end_point);
         const search_request = await getMockResponse(domain, use_case, 'search');
         for (var key in req.body) {
             if (req.body.hasOwnProperty(key) && key !== "domain" && key !== "use_case" && key !== "ttl") {

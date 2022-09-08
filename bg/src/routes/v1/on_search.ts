@@ -8,6 +8,7 @@ router.post("/", async (req: Request, res: Response) => {
     const ack = getAckResponse(req);
     res.status(200).send(ack);
     console.log(`MOCK_BG : ${context.transaction_id} :Received result from ${context.bpp_id}:${context.bpp_uri}`);
+    console.log(req.body);
     sendResult(req.body);
 });
 

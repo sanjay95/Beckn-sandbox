@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p .",
     "dev": "env-cmd -f ./src/config/dev.env nodemon --config nodemon.json src/index.ts",
-    "dev:debug": "env-cmd -f ./src/config/dev.env nodemon --config nodemon.json --inspect-brk src/index.ts",
+    "dev:debug": "env-cmd -f ./src/config/dev.env nodemon --config nodemon.json src/index.ts --inspect-brk" ,
     "init_ts": "npx tsc --init && tslint --init"
   },
   "author": "Nirmal",

@@ -8,7 +8,7 @@ router.post("/", async (req: Request, res: Response) => {
     const { use_case } = req.headers;
     const result = await getBPPList();
     const BPP_ARRAY = result.data;
-    console.log(`BPPs received from db: ${BPP_ARRAY}`)
+    console.log(`BG /search : BPPs received from db: ${BPP_ARRAY}`)
     console.log(`MOCK_BG : ${context.transaction_id} : Initiating searching for BAP ${context.bap_id}:${context.bap_uri}`);
     const ack = await getAckResponse(req);
     res.status(200).send(ack);
