@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { createNewBapOnsearchData, getAllBapOnsearchDatas } from "../../utils/BapOnsearchData";
+import { createNewBapOnsearchData, getBapOnsearchData} from "../../utils/BapOnsearchData";
 
 const router = express.Router();
 
@@ -13,12 +13,14 @@ router.post("/", async (req: Request, res: Response) => {
     }
 });
 
-router.get("/bpp", async (req: Request, res: Response) => {
+router.get("/", async (req: Request, res: Response) => {
     try {
-        const platforms = await getAllBapOnsearchDatas();
+        const tId=req.query.transaction_id;
+        console.log('requested transaction id is : ' +tId);
+        const platforms = await getBapOnsearchData(req);
         res.status(200).send(platforms);
     } catch (error) {
-        res.send(500).send(error.message);
+        res.send(500).send(error);
     }
 });
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Request } from "express";
 import { BapOnsearchData } from "../db/models/BapOnsearchData.model";
 import { getSettingValues } from "./networkSettings";
 
@@ -18,13 +19,18 @@ const getErrorFromResponse = (error: any) => {
 };
 
 export const createNewBapOnsearchData = async (body: BapOnsearchData) => {
-    const bapOnsearchData = new BapOnsearchData(body);
+    const bapOnsearchData = new BapOnsearchData( body);
     const saved_item = await bapOnsearchData.save();
     return saved_item;
 }
 
 export const getAllBapOnsearchDatas = async () => {
     const results = BapOnsearchData.findAll();
+    return results;
+}
+
+export const getBapOnsearchData = async (req: Request) => {
+    const results = BapOnsearchData.findAll({where:{transaction_id:req.query.transaction_id}}); //,seen:false
     return results;
 }
 

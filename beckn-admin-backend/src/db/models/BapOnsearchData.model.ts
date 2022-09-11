@@ -1,4 +1,6 @@
 import { Table, Column, Model, PrimaryKey, IsIn, IsUrl, Default } from 'sequelize-typescript';
+import { TextDataType } from 'sequelize/types';
+
 
 @Table
 export class BapOnsearchData extends Model {
@@ -12,7 +14,7 @@ export class BapOnsearchData extends Model {
   @Column
   transaction_data: string
 
-  @Default(true)
+  @Default(false)
   @Column
   seen: boolean
 }

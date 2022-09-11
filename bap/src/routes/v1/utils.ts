@@ -121,6 +121,20 @@ export const initiateSearch = async (req: Request) => {
         console.log(`${config.get('bap_id')} ERROR : `, error);
     }
 };
+export const saveToDB=async(req:Request,uri:string)=>{
+    console.log('saving on search data to DB');
+    try{
+        const transaction_id= req.body.context.transaction_id
+        var data: any = {};
+        data.transaction_id = transaction_id;
+        data.transaction_data= JSON.stringify( req.body.message.catalog);
+        const res=await axios.post(uri,data);
+    } catch(error)
+    {
+        console.log(`$'Error:'`,error);
+    }
+
+};
 
 export const validateTriggerRequest = async (req: Request, api: string) => {
     const allowedApis = ["search", "select", "init", "confirm", "update", "status", "track", "cancel", "feedback", "support"];

@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
     try {
-        const user = await createNewUser(req);
+        const user = await createNewUser(req); 
         res.status(201).send(user.toResponse());
     } catch (e) {
         res.status(400).send({ status: "error", message: e?.message })
